@@ -34,7 +34,10 @@ function validateProfile(data) {
     errors.name = "Use letters, spaces, hyphens, periods or apostrophes.";
   }
 
-  if (!EMAIL_PATTERN.test(data.email.trim())) {
+  const email = data.email.trim();
+  if (email.length < 1) {
+    errors.email = `Email is required`;
+  } else if (!EMAIL_PATTERN.test(email)) {
     errors.email = "Enter an email like name@example.com.";
   }
 

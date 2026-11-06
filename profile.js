@@ -63,10 +63,13 @@ function showErrors(errors) {
 }
 
 function showPreview(data) {
-  preview.innerHTML = `
-    <h2>${data.name.trim()}</h2>
-    <p>${data.pronouns}</p>
-    <p>${data.bio}</p>`;
+  const elements = ["name", "pronouns", "bio"].map((field) => {
+    const element = document.createElement(field === "name" ? "h2" : "p");
+    element.textContent = data[field];
+    element.style.whiteSpace = "pre-wrap";
+    return element;
+  });
+  preview.replaceChildren(...elements);
   preview.hidden = false;
 }
 
